@@ -1,0 +1,50 @@
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+
+# Environment variables — NEVER commit this
+.env
+.env.local
+.env.production
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# Static files collected
+staticfiles/
+static_root/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+.env
+db.sqlite3
+__pycache__/
+*.pyc
+

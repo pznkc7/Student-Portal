@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}
+form
+{% endblock title %}
+
+{% block content %}
+<h1 class="text-center alert alert-dark">Update Student Details</h1>
+
+<div class="container alert alert-dark">
+    <div class="row">
+        <div class="col-10 mx-auto">
+
+
+            <form method="post" action="{% url 'edit' data.id %}">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="rollNumber" class="form-label">Roll Number</label>
+                    <input type="number" value="{{ data.roll_number }}" name="rollNumber" class="form-control" id="rollNumber" required maxlength="6" minlength="6" placeholder="Enter 6-digit Roll Number">
+                </div>
+
+                <div class="mb-3">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input type="text" value="{{ data.full_name }}" name="fullName" class="form-control" id="fullName" placeholder="Enter Full Name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="faculty" class="form-label">Faculty</label>
+                    <select value="{{ data.faculty }}" name="faculty" class="form-select" id="faculty" required>
+                        <option value="" disabled {% if not data.faculty %}selected{% endif %}>Select Faculty</option>
+                        <option value="Computer Engineering" {% if data.faculty == "Computer Engineering" %}selected{% endif %}>Computer Engineering</option>
+                        <option value="Electronics and Communication Engineering" {% if data.faculty == "Electronics and Communication Engineering" %}selected{% endif %}>Electronics and Communication Engineering</option>
+                        <option value="Architecture" {% if data.faculty == "Architecture" %}selected{% endif %}>Architecture</option>
+                        <option value="Electrical Engineering" {% if data.faculty == "Electrical Engineering" %}selected{% endif %}>Electrical Engineering</option>
+                        <option value="Civil Engineering" {% if data.faculty == "Civil Engineering" %}selected{% endif %}>Civil Engineering</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="semester" class="form-label">Semester</label>
+                    <input type="number" value="{{ data.semester }}" name="semester" class="form-control" id="semester" placeholder="Enter Semester" required min="1" max="10">
+                </div>
+
+                <div class="mb-3">
+                    <label for="startDate" class="form-label">Leave Start Date</label>
+                    <input type="date" value="{{ data.start_date|date:'Y-m-d' }}" name="startDate" class="form-control" id="startDate" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="endDate" class="form-label">Leave End Date</label>
+                    <input type="date" value="{{ data.end_date|date:'Y-m-d' }}" name="endDate" class="form-control" id="endDate" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="leaveType" class="form-label">Type of Leave</label>
+                    <select name="leaveType" class="form-select" id="leaveType" required>
+                        <option value="" disabled {% if not data.leave_type %}selected{% endif %}>Select Type of Leave</option>
+                        <option value="Medical Leave" {% if data.leave_type == "Medical Leave" %}selected{% endif %}>Medical Leave</option>
+                        <option value="Personal Leave" {% if data.leave_type == "Personal Leave" %}selected{% endif %}>Personal Leave</option>
+                        <option value="Other" {% if data.leave_type == "Other" %}selected{% endif %}>Other</option>
+                    </select>
+                </div>
+
+                
+                <div class="mb-3">
+                    <label for="reason" class="form-label">Reason for Leave</label>
+                    <textarea name="reason" class="form-control" id="reason" rows="3" placeholder="Provide reason for leave" required>{{ data.reason }}</textarea>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="guardianContact" class="form-label">Parent/Guardian Contact</label>
+                    <input type="text" value="{{ data.guardian_contact }}" name="guardianContact" class="form-control" id="guardianContact" placeholder="Enter Parent/Guardian Contact" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="studentEmail" class="form-label">Your Email</label>
+                    <input type="email" value="{{ data.student_email }}" name="studentEmail" class="form-control" id="studentEmail" placeholder="Enter Your Email" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

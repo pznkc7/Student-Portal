@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+ <h1 class="text-center alert alert-dark">STUDENT LEAVE SYSTEM</h1>
+
+ <div class="container ">
+
+    <form method="POST" action="{% url 'form' %}">
+      {% csrf_token %}
+        <div class="mb-3">
+    <label for="rollnumber" class="form-label">Roll Number</label>
+    <input type="number" name="rollnumber" class="form-control" id="rollnumber" minlength="6" placeholder="Enter your roll number">
+  </div>
+
+       <div class="mb-3">
+    <label for="fullName" class="form-label">Full Name</label>
+    <input type="text" name="fullName" class="form-control" id="fullName"  placeholder="Enter your full name">
+  </div>
+
+       <div class="mb-3">
+    <label for="faculty" class="form-label">Faculty</label>
+    <select name="faculty" id="faculty">
+        <option value="" disabled selected>Select Faculty</option>
+        <option>Computer Engineering</option>
+        <option>Civil Engineering</option>
+        <option>Architecture Engineering</option>
+        <option>Electrical Engineering</option>
+    </select>
+  </div>
+
+        <div class="mb-3">
+    <label for="leaveType" class="form-label">Leave Type</label>
+    <select name="leaveType" id="leaveType">
+        <option value="" disabled selected>Select Leave Type</option>
+        <option>Medical Leave</option>
+        <option>Personal Leave</option>
+        <option>Others</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="reason" class="form-label">Reason</label>
+      <input type="text" name="reason" class="form-control" id="reason"  placeholder="Enter your Reason">
+    </div>
+    
+       <div class="mb-3">
+    <label for="semester" class="form-label">Semester</label>
+    <input type="number" name="semester" class="form-control" id="semester"  placeholder="Enter your semester" min="1" max="10">
+  </div>
+
+      <div class="mb-3">
+    <label for="StartDate" class="form-label">StartDate</label>
+    <input type="date" name="startDate" class="form-control" id="StartDate"  placeholder="Enter your Start Date">
+  </div>
+
+     <div class="mb-3">
+      <label for="EndDate" class="form-label">EndDate</label>
+      <input type="date" name="endDate" class="form-control" id="EndDate"  placeholder="Enter your End Date">
+    </div>
+
+    
+     <div class="mb-3">
+      <label for="guardianContact" class="form-label">Guardian Contact</label>
+      <input type="number" name="guardianContact" class="form-control" id="guardianContact"  placeholder="Enter your Guardian Contact Number">
+    </div>
+
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  
+
+  <button type="submit"  class="btn btn-primary">Submit</button>
+</form>
+ </div>
+
+ 
+{% endblock content %}
