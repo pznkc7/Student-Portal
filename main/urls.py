@@ -17,6 +17,8 @@ urlpatterns = [
 
     # ___________Authentication portion start here____________
     path('register/', register, name='register'),
+    path('register_student/', register_student, name='register_student'),
+    path('register_teacher/', register_teacher, name='register_teacher'),
     path('log_in/', log_in, name='log_in'),
     path('log_out/', log_out, name='log_out'),
 
