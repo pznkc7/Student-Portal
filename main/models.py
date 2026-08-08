@@ -9,21 +9,21 @@ class Department(models.Model):
 
 
 class Student(models.Model):
+    username = models.CharField(max_length=100)
     student_id = models.CharField(max_length=6, unique=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    password = models.CharField(max_length=100)
     semester = models.PositiveIntegerField()
     department = models.ForeignKey(
         Department,
         on_delete=models.CASCADE,
         related_name="students"
     )
-
+    is_approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name} ({self.username})"
 
 
 class Teacher(models.Model):
@@ -34,10 +34,10 @@ class Teacher(models.Model):
         ('Teacher', 'Teacher'),
     )
 
+    username = models.CharField(max_length=100)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    password = models.CharField(max_length=100)
     teacher_id = models.CharField(max_length=6, unique=True)
 
     department = models.ForeignKey(
@@ -46,13 +46,11 @@ class Teacher(models.Model):
         related_name="teachers"
     )
 
-    role = models.CharField(
-        max_length=20,
-        choices=ROLE_CHOICES
-    )
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES)
+    is_approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name} ({self.username})"
 
 
 class LeaveType(models.Model):

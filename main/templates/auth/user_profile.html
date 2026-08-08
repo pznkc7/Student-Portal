@@ -2,306 +2,112 @@
 {% load static %}
 
 {% block content %}
-<style>
-    /* From Uiverse.io by pharmacist-sabot */ 
-/* --- Root Variables for the component --- */
-.glitch-form-wrapper {
-  --bg-color: #fefefeff;
-  --primary-color: #00f2ea;
-  --secondary-color: #a855f7;
-  --text-color: #e5e5e5;
-  --font-family: "Fira Code", Consolas, "Courier New", Courier, monospace;
-  --glitch-anim-duration: 0.5s;
-  height: 100vh;
-}
 
-.glitch-form-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: var(--font-family);
-  background-color: #050505;
-}
+<div style="min-height: 80vh; display: flex; justify-content: center; align-items: center; padding: 2rem 1rem;">
 
-/* --- Card Structure --- */
-.glitch-card {
-  background-color: var(--bg-color);
-  width: 100%;
-  max-width: 380px;
-  border: 1px solid rgba(0, 242, 234, 0.2);
-  box-shadow:
-    0 0 20px rgba(0, 242, 234, 0.1),
-    inset 0 0 10px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-  margin: 1rem;
-}
+    <div style="width: 100%; max-width: 480px;">
 
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 0.5em 1em;
-  border-bottom: 1px solid rgba(0, 242, 234, 0.2);
-}
+        <!-- Profile card -->
+        <div style="background: #fff; border: 0.5px solid #e0e0e0; border-radius: 16px; overflow: hidden; margin-bottom: 16px;">
 
-.card-title {
-  color: var(--primary-color);
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-}
+            <!-- Top banner -->
+            <div style="background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%); height: 80px; position: relative;">
+                <!-- Avatar -->
+                <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); width: 64px; height: 64px; border-radius: 50%; background: #e8f0fe; border: 3px solid #fff; display: flex; align-items: center; justify-content: center;">
+                    <i class="fa-solid fa-user" style="color: #0d6efd; font-size: 26px;"></i>
+                </div>
+            </div>
 
-.card-title svg {
-  width: 1.2em;
-  height: 1.2em;
-  stroke: var(--primary-color);
-}
+            <!-- Info -->
+            <div style="padding: 44px 2rem 2rem; text-align: center;">
+                <h3 style="font-size: 20px; font-weight: 700; color: #1a1a2e; margin: 0 0 4px;">
+                    {{ user.first_name }} {{ user.last_name }}
+                </h3>
+                <span style="display: inline-block; font-size: 12px; font-weight: 600; background: #e8f0fe; color: #0d6efd; padding: 3px 12px; border-radius: 20px; margin-bottom: 20px;">
+                    @{{ user.username }}
+                </span>
 
-.card-dots span {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #333;
-  margin-left: 5px;
-}
+                <!-- Detail rows -->
+                <div style="text-align: left; border-top: 0.5px solid #e0e0e0; padding-top: 1.25rem; display: flex; flex-direction: column; gap: 14px;">
 
-.card-body {
-  padding: 1.5rem;
-}
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div style="width: 36px; height: 36px; border-radius: 8px; background: #e8f0fe; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i class="fa-solid fa-user" style="color: #0d6efd; font-size: 14px;"></i>
+                        </div>
+                        <div>
+                            <p style="font-size: 11px; color: #adb5bd; margin: 0; text-transform: uppercase; letter-spacing: .04em;">Username</p>
+                            <p style="font-size: 15px; color: #1a1a2e; font-weight: 500; margin: 0;">{{ user.username }}</p>
+                        </div>
+                    </div>
 
-/* --- Form Elements --- */
-.form-group {
-  position: relative;
-  margin-bottom: 1.5rem;
-}
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div style="width: 36px; height: 36px; border-radius: 8px; background: #e8f0fe; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i class="fa-solid fa-id-card" style="color: #0d6efd; font-size: 14px;"></i>
+                        </div>
+                        <div>
+                            <p style="font-size: 11px; color: #adb5bd; margin: 0; text-transform: uppercase; letter-spacing: .04em;">Full Name</p>
+                            <p style="font-size: 15px; color: #1a1a2e; font-weight: 500; margin: 0;">{{ user.first_name }} {{ user.last_name }}</p>
+                        </div>
+                    </div>
 
-.form-label {
-  position: absolute;
-  top: 0.75em;
-  left: 0;
-  font-size: 1rem;
-  color: var(--primary-color);
-  opacity: 0.6;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  pointer-events: none;
-  transition: all 0.3s ease;
-}
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div style="width: 36px; height: 36px; border-radius: 8px; background: #e8f0fe; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i class="fa-solid fa-envelope" style="color: #0d6efd; font-size: 14px;"></i>
+                        </div>
+                        <div>
+                            <p style="font-size: 11px; color: #adb5bd; margin: 0; text-transform: uppercase; letter-spacing: .04em;">Email</p>
+                            <p style="font-size: 15px; color: #1a1a2e; font-weight: 500; margin: 0;">{{ user.email }}</p>
+                        </div>
+                    </div>
 
-.form-group input {
-  width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid rgba(0, 242, 234, 0.3);
-  padding: 0.75em 0;
-  font-size: 1rem;
-  color: var(--text-color);
-  font-family: inherit;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div style="width: 36px; height: 36px; border-radius: 8px; background: {% if user.is_active %}#e8f5e9{% else %}#fff3e0{% endif %}; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i class="fa-solid fa-circle-check" style="color: {% if user.is_active %}#2e7d32{% else %}#f59e0b{% endif %}; font-size: 14px;"></i>
+                        </div>
+                        <div>
+                            <p style="font-size: 11px; color: #adb5bd; margin: 0; text-transform: uppercase; letter-spacing: .04em;">Account Status</p>
+                            <p style="font-size: 15px; font-weight: 500; margin: 0; color: {% if user.is_active %}#2e7d32{% else %}#f59e0b{% endif %};">
+                                {% if user.is_active %}Active & Approved{% else %}Pending Approval{% endif %}
+                            </p>
+                        </div>
+                    </div>
 
-.form-group input:focus {
-  border-color: var(--primary-color);
-}
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div style="width: 36px; height: 36px; border-radius: 8px; background: #e8f0fe; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i class="fa-solid fa-calendar" style="color: #0d6efd; font-size: 14px;"></i>
+                        </div>
+                        <div>
+                            <p style="font-size: 11px; color: #adb5bd; margin: 0; text-transform: uppercase; letter-spacing: .04em;">Member Since</p>
+                            <p style="font-size: 15px; color: #1a1a2e; font-weight: 500; margin: 0;">{{ user.date_joined|date:"F j, Y" }}</p>
+                        </div>
+                    </div>
 
-.form-group input:focus + .form-label,
-.form-group input:not(:placeholder-shown) + .form-label {
-  top: -1.2em;
-  font-size: 0.8rem;
-  opacity: 1;
-}
+                </div>
+            </div>
+        </div>
 
-.form-group input:focus + .form-label::before,
-.form-group input:focus + .form-label::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--bg-color);
-}
+        <!-- Action buttons -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
 
-.form-group input:focus + .form-label::before {
-  color: var(--secondary-color);
-  animation: glitch-anim var(--glitch-anim-duration)
-    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
+            <a href="{% url 'change_password' %}"
+                style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: #0d6efd; color: white; border-radius: 10px; text-decoration: none; font-size: 14px; font-weight: 600;"
+                onmouseover="this.style.background='#0b5ed7';"
+                onmouseout="this.style.background='#0d6efd';">
+                <i class="fa-solid fa-key"></i>
+                Change Password
+            </a>
 
-.form-group input:focus + .form-label::after {
-  color: var(--primary-color);
-  animation: glitch-anim var(--glitch-anim-duration)
-    cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both;
-}
+            <a href="{% url 'log_out' %}"
+                style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: #fff; color: #dc3545; border: 0.5px solid #dc3545; border-radius: 10px; text-decoration: none; font-size: 14px; font-weight: 600;"
+                onmouseover="this.style.background='#fff5f5';"
+                onmouseout="this.style.background='#fff';">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
 
-@keyframes glitch-anim {
-  0% {
-    transform: translate(0);
-    clip-path: inset(0 0 0 0);
-  }
-  20% {
-    transform: translate(-5px, 3px);
-    clip-path: inset(50% 0 20% 0);
-  }
-  40% {
-    transform: translate(3px, -2px);
-    clip-path: inset(20% 0 60% 0);
-  }
-  60% {
-    transform: translate(-4px, 2px);
-    clip-path: inset(80% 0 5% 0);
-  }
-  80% {
-    transform: translate(4px, -3px);
-    clip-path: inset(30% 0 45% 0);
-  }
-  100% {
-    transform: translate(0);
-    clip-path: inset(0 0 0 0);
-  }
-}
+        </div>
 
-/* --- Button Styling --- */
-.submit-btn {
-  width: 100%;
-  padding: 0.8em;
-  margin-top: 1rem;
-  background-color: transparent;
-  border: 2px solid var(--primary-color);
-  color: var(--primary-color);
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.3s;
-  overflow: hidden;
-}
-
-.submit-btn:hover,
-.submit-btn:focus {
-  background-color: var(--primary-color);
-  color: var(--bg-color);
-  box-shadow: 0 0 25px var(--primary-color);
-  outline: none;
-}
-
-.submit-btn:active {
-  transform: scale(0.97);
-}
-
-/* --- Glitch Effect for Button --- */
-.submit-btn .btn-text {
-  position: relative;
-  z-index: 1;
-  transition: opacity 0.2s ease;
-}
-
-.submit-btn:hover .btn-text {
-  opacity: 0;
-}
-
-.submit-btn::before,
-.submit-btn::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  background-color: var(--primary-color);
-  transition: opacity 0.2s ease;
-}
-
-.submit-btn:hover::before,
-.submit-btn:focus::before {
-  opacity: 1;
-  color: var(--secondary-color);
-  animation: glitch-anim var(--glitch-anim-duration)
-    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
-.submit-btn:hover::after,
-.submit-btn:focus::after {
-  opacity: 1;
-  color: var(--bg-color);
-  animation: glitch-anim var(--glitch-anim-duration)
-    cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .form-group input:focus + .form-label::before,
-  .form-group input:focus + .form-label::after,
-  .submit-btn:hover::before,
-  .submit-btn:focus::before,
-  .submit-btn:hover::after,
-  .submit-btn:focus::after {
-    animation: none;
-    opacity: 0;
-  }
-
-  .submit-btn:hover .btn-text {
-    opacity: 1;
-  }
-}
-
-</style>
-
-<body>
-<!-- From Uiverse.io by pharmacist-sabot --> 
-<div class="glitch-form-wrapper">
-  <form class="glitch-card">
-    <div class="card-header">
-      <div class="card-title">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          fill="100%"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
-          <path
-            d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"
-          ></path>
-          <path
-            d="M12 11.5a3 3 0 0 0 -3 2.824v1.176a3 3 0 0 0 6 0v-1.176a3 3 0 0 0 -3 -2.824z"
-          ></path>
-        </svg>
-        <span>User details</span>
-      </div>
-
-      <div class="card-dots"><span></span><span></span><span></span></div>
     </div>
-    <div class="card-body">
-        USERNAME : {{user.username}} <br>
-        FIRST_NAME : {{user.first_name}} <br>
-        LAST_NAME : {{user.last_name}} <br>
-        EMAIL : {{user.email}}
-    </div>
-      <button data-text="CHANGE PASSWORD" type="submit" class="submit-btn">
-        <div class="btn-text"><a href="{% url "change_password" %}">Change Password</a></div>
-      </button>
-    </div>
-  </form>
 </div>
 
 {% endblock %}

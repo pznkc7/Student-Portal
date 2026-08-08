@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div style="min-height: 80vh; display: flex; justify-content: center; align-items: center; padding: 2rem 1rem;">
+
+    <div style="width: 100%; max-width: 500px; background: var(--color-background-primary, #fff); border: 0.5px solid var(--color-border-tertiary, #e0e0e0); border-radius: 16px; padding: 2.5rem 2rem;">
+
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <div style="width: 52px; height: 52px; border-radius: 50%; background: #e8f0fe; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                <i class="fa-solid fa-user-graduate" style="color: #0d6efd; font-size: 22px;"></i>
+            </div>
+            <h2 style="font-size: 22px; font-weight: 600; color: var(--color-text-primary, #1a1a2e); margin: 0 0 6px;">Create Student Account</h2>
+            <p style="font-size: 14px; color: var(--color-text-secondary, #6c757d); margin: 0;">Register to access the Student Portal</p>
+        </div>
+
+        <!-- Approval notice -->
+        <div style="background: #fff8e1; border: 0.5px solid #ffe082; border-radius: 8px; padding: 12px 16px; margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 10px;">
+            <i class="fa-solid fa-circle-info" style="color: #f59e0b; font-size: 16px; margin-top: 2px;"></i>
+            <span style="font-size: 13px; color: #78350f; line-height: 1.5;">Your account will require <strong>admin approval</strong> before you can log in. You'll be notified once approved.</span>
+        </div>
+
+        <form action="{% url 'register_student' %}" method="POST">
+            {% csrf_token %}
+
+            <!-- Row: Username + Student ID -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+                <div>
+                    <label style="display: block; font-size: 13px; font-weight: 500; color: var(--color-text-secondary, #6c757d); margin-bottom: 6px;">Username</label>
+                    <input required type="text" name="username" placeholder="e.g. john_doe"
+                        style="width: 100%; padding: 11px 14px; border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;"
+                        onfocus="this.style.borderColor='#0d6efd'; this.style.boxShadow='0 0 0 3px rgba(13,110,253,0.12)';"
+                        onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none';">
+                </div>
+                <div>
+                    <label style="display: block; font-size: 13px; font-weight: 500; color: var(--color-text-secondary, #6c757d); margin-bottom: 6px;">Student ID</label>
+                    <input required type="text" name="student_id" placeholder="6-char ID" maxlength="6"
+                        style="width: 100%; padding: 11px 14px; border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;"
+                        onfocus="this.style.borderColor='#0d6efd'; this.style.boxShadow='0 0 0 3px rgba(13,110,253,0.12)';"
+                        onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none';">
+                </div>
+            </div>
+
+            <!-- Row: First + Last Name -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+                <div>
+                    <label style="display: block; font-size: 13px; font-weight: 500; color: var(--color-text-secondary, #6c757d); margin-bottom: 6px;">First Name</label>
+                    <input required type="text" name="first_name" placeholder="First name"
+                        style="width: 100%; padding: 11px 14px; border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;"
+                        onfocus="this.style.borderColor='#0d6efd'; this.style.boxShadow='0 0 0 3px rgba(13,110,253,0.12)';"
+                        onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none';">
+                </div>
+                <div>
+                    <label style="display: block; font-size: 13px; font-weight: 500; color: var(--color-text-secondary, #6c757d); margin-bottom: 6px;">Last Name</label>
+                    <input required type="text" name="last_name" placeholder="Last name"
+                        style="width: 100%; padding: 11px 14px; border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;"
+                        onfocus="this.style.borderColor='#0d6efd'; this.style.boxShadow='0 0 0 3px rgba(13,110,253,0.12)';"
+                        onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none';">
+                </div>
+            </div>
+
+            <!-- Row: Department + Semester -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+                <div>
+                    <label style="display: block; font-size: 13px; font-weight: 500; color: var(--color-text-secondary, #6c757d); margin-bottom: 6px;">Department</label>
+                    <select required name="department"
+                        style="width: 100%; padding: 11px 14px; border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box; background: #fff;"
+                        onfocus="this.style.borderColor='#0d6efd'; this.style.boxShadow='0 0 0 3px rgba(13,110,253,0.12)';"
+                        onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none';">
+                        <option value="" disabled selected>Select</option>
+                        {% for dept in departments %}
+                            <option value="{{ dept.id }}">{{ dept.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label style="display: block; font-size: 13px; font-weight: 500; color: var(--color-text-secondary, #6c757d); margin-bottom: 6px;">Semester</label>
+                    <input required type="number" name="semester" placeholder="e.g. 3" min="1" max="10"
+                        style="width: 100%; padding: 11px 14px; border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;"
+                        onfocus="this.style.borderColor='#0d6efd'; this.style.boxShadow='0 0 0 3px rgba(13,110,253,0.12)';"
+                        onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none';">
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div style="margin-bottom: 14px;">
+                <label style="display: block; font-size: 13px; font-weight: 500; color: var(--color-text-secondary, #6c757d); margin-bottom: 6px;">Email Address</label>
+                <input required type="email" name="email" placeholder="you@gmail.com"
+                    style="width: 100%; padding: 11px 14px; border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;"
+                    onfocus="this.style.borderColor='#0d6efd'; this.style.boxShadow='0 0 0 3px rgba(13,110,253,0.12)';"
+                    onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none';">
+            </div>
+
+            <!-- Row: Password + Confirm -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;">
+                <div>
+                    <label style="display: block; font-size: 13px; font-weight: 500; color: var(--color-text-secondary, #6c757d); margin-bottom: 6px;">Password</label>
+                    <input required type="password" name="password" placeholder="Password"
+                        style="width: 100%; padding: 11px 14px; border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;"
+                        onfocus="this.style.borderColor='#0d6efd'; this.style.boxShadow='0 0 0 3px rgba(13,110,253,0.12)';"
+                        onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none';">
+                </div>
+                <div>
+                    <label style="display: block; font-size: 13px; font-weight: 500; color: var(--color-text-secondary, #6c757d); margin-bottom: 6px;">Confirm Password</label>
+                    <input required type="password" name="confirm_password" placeholder="Confirm"
+                        style="width: 100%; padding: 11px 14px; border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;"
+                        onfocus="this.style.borderColor='#0d6efd'; this.style.boxShadow='0 0 0 3px rgba(13,110,253,0.12)';"
+                        onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none';">
+                </div>
+            </div>
+
+            <button type="submit"
+                style="width: 100%; padding: 12px; background: #0d6efd; color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s;"
+                onmouseover="this.style.background='#0b5ed7';"
+                onmouseout="this.style.background='#0d6efd';">
+                Create Account
+            </button>
+
+        </form>
+
+        <div style="text-align: center; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 0.5px solid var(--color-border-tertiary, #e0e0e0);">
+            <span style="font-size: 14px; color: var(--color-text-secondary, #6c757d);">Already have an account?</span>
+            <a href="{% url 'log_in' %}" style="font-size: 14px; font-weight: 600; color: #0d6efd; text-decoration: none; margin-left: 6px;">Sign in</a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

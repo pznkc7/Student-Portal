@@ -3,187 +3,81 @@
 
 {% block content %}
 
-<style>
-    body{
-        background-color:#f4f7fc;
-    }
+<div style="min-height: 80vh; display: flex; justify-content: center; align-items: center; padding: 2rem 1rem;">
 
-    .auth-wrapper{
-        min-height:100vh;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        padding:20px;
-    }
+    <div style="width: 100%; max-width: 440px; background: var(--color-background-primary, #fff); border: 0.5px solid var(--color-border-tertiary, #e0e0e0); border-radius: 16px; padding: 2.5rem 2rem;">
 
-    .auth-card{
-        width:100%;
-        max-width:450px;
-        background:#fff;
-        padding:40px;
-        border-radius:15px;
-        box-shadow:0 10px 30px rgba(0,0,0,0.08);
-    }
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <div style="width: 52px; height: 52px; border-radius: 50%; background: #e8f0fe; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                <i class="fa-solid fa-graduation-cap" style="color: #0d6efd; font-size: 22px;"></i>
+            </div>
+            <h2 style="font-size: 22px; font-weight: 600; color: var(--color-text-primary, #1a1a2e); margin: 0 0 6px;">Welcome back</h2>
+            <p style="font-size: 14px; color: var(--color-text-secondary, #6c757d); margin: 0;">Sign in to submit and track leave requests</p>
+        </div>
 
-    .heading{
-        text-align:center;
-        font-size:30px;
-        font-weight:700;
-        color:#2c3e50;
-        margin-bottom:5px;
-    }
-
-    .sub-heading{
-        text-align:center;
-        color:#6c757d;
-        margin-bottom:25px;
-    }
-
-    .form .input{
-        width:100%;
-        padding:12px 15px;
-        border:1px solid #ced4da;
-        border-radius:8px;
-        margin-bottom:15px;
-        font-size:15px;
-        transition:0.3s;
-    }
-
-    .form .input:focus{
-        outline:none;
-        border-color:#0d6efd;
-        box-shadow:0 0 5px rgba(13,110,253,.25);
-    }
-
-    .remember-section{
-        margin-bottom:15px;
-    }
-
-    .forgot-password{
-        text-align:right;
-        margin-bottom:15px;
-    }
-
-    .forgot-password a{
-        text-decoration:none;
-        color:#0d6efd;
-    }
-
-    .login-button{
-        width:100%;
-        border:none;
-        background:#0d6efd;
-        color:white;
-        padding:12px;
-        border-radius:8px;
-        font-weight:600;
-        transition:.3s;
-    }
-
-    .login-button:hover{
-        background:#0b5ed7;
-    }
-
-    .social-account-container{
-        margin-top:25px;
-        text-align:center;
-    }
-
-    .title{
-        color:#6c757d;
-        font-size:14px;
-    }
-
-    .social-accounts{
-        display:flex;
-        justify-content:center;
-        margin-top:10px;
-    }
-
-    .social-button{
-        width:45px;
-        height:45px;
-        border:none;
-        border-radius:50%;
-        background:#f1f3f5;
-        cursor:pointer;
-    }
-
-    .social-button svg{
-        fill:#444;
-    }
-</style>
-
-<div class="auth-wrapper">
-
-    <div class="auth-card">
-
-        <div class="heading">Student Leave Portal</div>
-
-        <p class="sub-heading">
-            Sign in to submit and track leave requests
-        </p>
-
-        <form action="{% url 'log_in' %}" method="POST" class="form">
+        <form action="{% url 'log_in' %}" method="POST">
             {% csrf_token %}
 
-            <input
-                required
-                class="input"
-                type="text"
-                name="username"
-                placeholder="Username">
-
-            <input
-                required
-                class="input"
-                type="password"
-                name="password"
-                placeholder="Password">
-
-            <div class="remember-section">
-                <input type="checkbox" name="remember_me">
-                <label>Remember Me</label>
+            <div style="margin-bottom: 14px;">
+                <label style="display: block; font-size: 13px; font-weight: 500; color: var(--color-text-secondary, #6c757d); margin-bottom: 6px;">Username</label>
+                <input
+                    required
+                    type="text"
+                    name="username"
+                    placeholder="Enter your username"
+                    style="width: 100%; padding: 11px 14px; border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box; transition: border-color 0.2s, box-shadow 0.2s;"
+                    onfocus="this.style.borderColor='#0d6efd'; this.style.boxShadow='0 0 0 3px rgba(13,110,253,0.12)';"
+                    onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none';">
             </div>
 
-            <div class="forgot-password">
-                <a href="{% url 'password_reset' %}">
-                    Forgot Password?
-                </a>
+            <div style="margin-bottom: 14px;">
+                <label style="display: block; font-size: 13px; font-weight: 500; color: var(--color-text-secondary, #6c757d); margin-bottom: 6px;">Password</label>
+                <input
+                    required
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    style="width: 100%; padding: 11px 14px; border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box; transition: border-color 0.2s, box-shadow 0.2s;"
+                    onfocus="this.style.borderColor='#0d6efd'; this.style.boxShadow='0 0 0 3px rgba(13,110,253,0.12)';"
+                    onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none';">
             </div>
 
-            <input
-                class="login-button"
-                type="submit"
-                value="Login">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--color-text-secondary, #6c757d); cursor: pointer;">
+                    <input type="checkbox" name="remember_me" style="accent-color: #0d6efd; width: 15px; height: 15px;">
+                    Remember me
+                </label>
+                <a href="{% url 'password_reset' %}" style="font-size: 13px; color: #0d6efd; text-decoration: none; font-weight: 500;">Forgot password?</a>
+            </div>
+
+            <button type="submit" style="width: 100%; padding: 12px; background: #0d6efd; color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s;"
+                onmouseover="this.style.background='#0b5ed7';"
+                onmouseout="this.style.background='#0d6efd';">
+                Sign in
+            </button>
+
         </form>
 
-        <div class="social-account-container">
+        <div style="margin: 1.5rem 0; display: flex; align-items: center; gap: 12px;">
+            <div style="flex: 1; height: 0.5px; background: var(--color-border-tertiary, #e0e0e0);"></div>
+            <span style="font-size: 13px; color: var(--color-text-secondary, #adb5bd);">or continue with</span>
+            <div style="flex: 1; height: 0.5px; background: var(--color-border-tertiary, #e0e0e0);"></div>
+        </div>
 
-            <span class="title">Or Continue With</span>
+        <button
+            onclick="window.location.href='{% url 'social:begin' 'google-oauth2' %}'"
+            style="width: 100%; padding: 11px; background: var(--color-background-primary, #fff); border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; font-weight: 500; color: var(--color-text-primary, #1a1a2e); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: background 0.2s, border-color 0.2s;"
+            onmouseover="this.style.background='#f8f9fa'; this.style.borderColor='#0d6efd';"
+            onmouseout="this.style.background=''; this.style.borderColor='#ced4da';">
+            <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 488 512">
+                <path fill="#4285F4" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/>
+            </svg>
+            Sign in with Google
+        </button>
 
-            <div class="social-accounts">
-
-                <button
-                    class="social-button"
-                    onclick="window.location.href='{% url 'social:begin' 'google-oauth2' %}'">
-
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         height="1em"
-                         viewBox="0 0 488 512">
-                        <path d="M488 261.8C488 403.3 391.1 504 248 504
-                        110.8 504 0 393.2 0 256S110.8 8 248 8
-                        c66.8 0 123 24.5 166.3 64.9l-67.5 64.9
-                        C258.5 52.6 94.3 116.6 94.3 256
-                        c0 86.5 69.1 156.6 153.7 156.6
-                        98.2 0 135-70.4 140.8-106.9H248v-85.3
-                        h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
-                        </path>
-                    </svg>
-
-                </button>
-
-            </div>
+        <div style="text-align: center; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 0.5px solid var(--color-border-tertiary, #e0e0e0);">
+            <span style="font-size: 14px; color: var(--color-text-secondary, #6c757d);">Don't have an account?</span>
+            <a href="{% url 'register' %}" style="font-size: 14px; font-weight: 600; color: #0d6efd; text-decoration: none; margin-left: 6px;">Create one</a>
         </div>
 
     </div>

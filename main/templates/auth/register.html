@@ -3,207 +3,58 @@
 
 {% block content %}
 
-<style>
-    body{
-        background:#f4f7fc;
-    }
+<div style="min-height: 80vh; display: flex; justify-content: center; align-items: center; padding: 2rem 1rem;">
 
-    .auth-wrapper{
-        min-height:100vh;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        padding:20px;
-    }
+    <div style="width: 100%; max-width: 460px; background: var(--color-background-primary, #fff); border: 0.5px solid var(--color-border-tertiary, #e0e0e0); border-radius: 16px; padding: 2.5rem 2rem;">
 
-    .auth-card{
-        width:100%;
-        max-width:500px;
-        background:#fff;
-        padding:40px;
-        border-radius:15px;
-        box-shadow:0 10px 30px rgba(0,0,0,.08);
-    }
-
-    .heading{
-        text-align:center;
-        font-size:30px;
-        font-weight:700;
-        color:#2c3e50;
-        margin-bottom:5px;
-    }
-
-    .sub-heading{
-        text-align:center;
-        color:#6c757d;
-        margin-bottom:25px;
-    }
-
-    .input{
-        width:100%;
-        padding:12px 15px;
-        border:1px solid #ced4da;
-        border-radius:8px;
-        margin-bottom:15px;
-        transition:.3s;
-    }
-
-    .input:focus{
-        outline:none;
-        border-color:#0d6efd;
-        box-shadow:0 0 5px rgba(13,110,253,.25);
-    }
-
-    .login-button{
-        width:100%;
-        border:none;
-        background:#0d6efd;
-        color:white;
-        padding:12px;
-        border-radius:8px;
-        font-weight:600;
-    }
-
-    .login-button:hover{
-        background:#0b5ed7;
-    }
-
-    .social-account-container{
-        text-align:center;
-        margin-top:20px;
-    }
-
-    .social-accounts{
-        display:flex;
-        justify-content:center;
-        margin-top:10px;
-    }
-
-    .social-button{
-        width:45px;
-        height:45px;
-        border:none;
-        border-radius:50%;
-        background:#f1f3f5;
-        cursor:pointer;
-    }
-
-    .social-button svg{
-        fill:#444;
-    }
-
-    .close-btn{
-        position:absolute;
-        top:20px;
-        left:20px;
-    }
-
-    .close-btn a{
-        text-decoration:none;
-        font-size:20px;
-        font-weight:bold;
-        color:#000;
-    }
-</style>
-
-<div class="close-btn">
-    <a href="{% url 'home' %}">✕</a>
-</div>
-
-<div class="auth-wrapper">
-
-    <div class="auth-card">
-
-        <div class="heading">Create Student Account</div>
-
-        <p class="sub-heading">
-            Register to access the Leave Management System
-        </p>
-
-        <form action="{% url 'register' %}" method="POST">
-
-            {% csrf_token %}
-
-            <input
-                required
-                class="input"
-                type="text"
-                name="username"
-                placeholder="Username">
-
-            <input
-                required
-                class="input"
-                type="text"
-                name="first_name"
-                placeholder="First Name">
-
-            <input
-                required
-                class="input"
-                type="text"
-                name="last_name"
-                placeholder="Last Name">
-
-            <input
-                required
-                class="input"
-                type="email"
-                name="email"
-                placeholder="Email Address">
-
-            <input
-                required
-                class="input"
-                type="password"
-                name="password"
-                placeholder="Password">
-
-            <input
-                required
-                class="input"
-                type="password"
-                name="confirm_password"
-                placeholder="Confirm Password">
-
-            <input
-                class="login-button"
-                type="submit"
-                value="Create Account">
-
-        </form>
-
-        <div class="social-account-container">
-
-            <span>Or Continue With</span>
-
-            <div class="social-accounts">
-
-                <button
-                    class="social-button"
-                    onclick="window.location.href='{% url 'social:begin' 'google-oauth2' %}'">
-
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         height="1em"
-                         viewBox="0 0 488 512">
-                        <path d="M488 261.8C488 403.3 391.1 504 248 504
-                        110.8 504 0 393.2 0 256S110.8 8 248 8
-                        c66.8 0 123 24.5 166.3 64.9l-67.5 64.9
-                        C258.5 52.6 94.3 116.6 94.3 256
-                        c0 86.5 69.1 156.6 153.7 156.6
-                        98.2 0 135-70.4 140.8-106.9H248v-85.3
-                        h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
-                        </path>
-                    </svg>
-
-                </button>
-
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <div style="width: 52px; height: 52px; border-radius: 50%; background: #e8f0fe; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                <i class="fa-solid fa-graduation-cap" style="color: #0d6efd; font-size: 22px;"></i>
             </div>
+            <h2 style="font-size: 22px; font-weight: 600; color: #1a1a2e; margin: 0 0 6px;">Create an account</h2>
+            <p style="font-size: 14px; color: #6c757d; margin: 0;">Choose how you want to join the Student Portal</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 2rem;">
+
+            <a href="{% url 'register_student' %}" style="text-decoration: none;">
+                <div style="display: flex; align-items: center; gap: 16px; padding: 18px 20px; border: 0.5px solid #e0e0e0; border-radius: 12px; background: #fff; cursor: pointer;"
+                     onmouseover="this.style.borderColor='#0d6efd'; this.style.background='#f0f5ff';"
+                     onmouseout="this.style.borderColor='#e0e0e0'; this.style.background='#fff';">
+                    <div style="width: 44px; height: 44px; border-radius: 10px; background: #e8f0fe; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fa-solid fa-user-graduate" style="color: #0d6efd; font-size: 18px;"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <p style="font-size: 15px; font-weight: 600; color: #1a1a2e; margin: 0 0 2px;">Register as Student</p>
+                        <p style="font-size: 13px; color: #6c757d; margin: 0;">Submit and track your leave applications</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right" style="color: #adb5bd; font-size: 14px;"></i>
+                </div>
+            </a>
+
+            <a href="{% url 'register_teacher' %}" style="text-decoration: none;">
+                <div style="display: flex; align-items: center; gap: 16px; padding: 18px 20px; border: 0.5px solid #e0e0e0; border-radius: 12px; background: #fff; cursor: pointer;"
+                     onmouseover="this.style.borderColor='#0d6efd'; this.style.background='#f0f5ff';"
+                     onmouseout="this.style.borderColor='#e0e0e0'; this.style.background='#fff';">
+                    <div style="width: 44px; height: 44px; border-radius: 10px; background: #e8f4f8; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fa-solid fa-chalkboard-user" style="color: #0dcaf0; font-size: 18px;"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <p style="font-size: 15px; font-weight: 600; color: #1a1a2e; margin: 0 0 2px;">Register as Teacher</p>
+                        <p style="font-size: 13px; color: #6c757d; margin: 0;">Manage and review student leave requests</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right" style="color: #adb5bd; font-size: 14px;"></i>
+                </div>
+            </a>
+
+        </div>
+
+        <div style="text-align: center; padding-top: 1.25rem; border-top: 0.5px solid #e0e0e0;">
+            <span style="font-size: 14px; color: #6c757d;">Already have an account?</span>
+            <a href="{% url 'log_in' %}" style="font-size: 14px; font-weight: 600; color: #0d6efd; text-decoration: none; margin-left: 6px;">Sign in</a>
         </div>
 
     </div>
-
 </div>
-
 
 {% endblock %}

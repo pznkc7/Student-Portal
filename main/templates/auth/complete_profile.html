@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div style="min-height: 80vh; display: flex; justify-content: center; align-items: center; padding: 2rem 1rem;">
+  <div style="width: 100%; max-width: 500px; background: #fff; border: 0.5px solid #e0e0e0; border-radius: 16px; padding: 2.5rem 2rem;">
+
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <h2 style="font-size: 22px; font-weight: 600; margin: 0 0 6px;">Finish setting up your account</h2>
+      <p style="font-size: 14px; color: #6c757d; margin: 0;">Signed in as {{ email }} — pick your role to continue</p>
+    </div>
+
+    <form method="POST">
+      {% csrf_token %}
+
+      <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+        <label style="flex:1; text-align:center; border:1px solid #ced4da; border-radius:8px; padding:12px; cursor:pointer;">
+          <input type="radio" name="role" value="student" onclick="toggleRole('student')" required> Student
+        </label>
+        <label style="flex:1; text-align:center; border:1px solid #ced4da; border-radius:8px; padding:12px; cursor:pointer;">
+          <input type="radio" name="role" value="teacher" onclick="toggleRole('teacher')"> Teacher
+        </label>
+      </div>
+
+      <div class="mb-3">
+        <label style="display:block; font-size:13px; font-weight:500; color:#6c757d; margin-bottom:6px;">Department</label>
+        <select required name="department" class="form-select">
+          <option value="" disabled selected>Select</option>
+          {% for dept in departments %}
+            <option value="{{ dept.id }}">{{ dept.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div id="studentFields" style="display:none;">
+        <div class="mb-3">
+          <label style="display:block; font-size:13px; font-weight:500; color:#6c757d; margin-bottom:6px;">Student ID</label>
+          <input type="text" name="student_id" maxlength="6" class="form-control" placeholder="6-char ID">
+        </div>
+        <div class="mb-3">
+          <label style="display:block; font-size:13px; font-weight:500; color:#6c757d; margin-bottom:6px;">Semester</label>
+          <input type="number" name="semester" min="1" max="10" class="form-control">
+        </div>
+      </div>
+
+      <div id="teacherFields" style="display:none;">
+        <div class="mb-3">
+          <label style="display:block; font-size:13px; font-weight:500; color:#6c757d; margin-bottom:6px;">Teacher ID</label>
+          <input type="text" name="teacher_id" maxlength="6" class="form-control" placeholder="6-char ID">
+        </div>
+        <div class="mb-3">
+          <label style="display:block; font-size:13px; font-weight:500; color:#6c757d; margin-bottom:6px;">Role</label>
+          <select name="teacher_role" class="form-select">
+            <option value="Admin">Admin</option>
+            <option value="Coordinator">Coordinator</option>
+            <option value="Teacher">Teacher</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" style="width:100%; padding:12px; background:#0d6efd; color:white; border:none; border-radius:8px; font-weight:600;">
+        Submit for approval
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<script>
+function toggleRole(role) {
+  document.getElementById('studentFields').style.display = role === 'student' ? 'block' : 'none';
+  document.getElementById('teacherFields').style.display = role === 'teacher' ? 'block' : 'none';
+  document.querySelectorAll('#studentFields input, #teacherFields input, #teacherFields select')
+    .forEach(el => el.required = false);
+  document.querySelectorAll(`#${role}Fields input, #${role}Fields select`)
+    .forEach(el => el.required = true);
+}
+</script>
+
+{% endblock %}

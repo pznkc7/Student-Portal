@@ -1,79 +1,84 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
- <h1 class="text-center alert alert-dark">STUDENT LEAVE SYSTEM</h1>
 
- <div class="container ">
+<h1 class="text-center alert alert-dark">STUDENT LEAVE SYSTEM</h1>
+
+<div class="container">
 
     <form method="POST" action="{% url 'form' %}">
-      {% csrf_token %}
-        <div class="mb-3">
-    <label for="rollnumber" class="form-label">Roll Number</label>
-    <input type="number" name="rollnumber" class="form-control" id="rollnumber" minlength="6" placeholder="Enter your roll number">
-  </div>
-
-       <div class="mb-3">
-    <label for="fullName" class="form-label">Full Name</label>
-    <input type="text" name="fullName" class="form-control" id="fullName"  placeholder="Enter your full name">
-  </div>
-
-       <div class="mb-3">
-    <label for="faculty" class="form-label">Faculty</label>
-    <select name="faculty" id="faculty">
-        <option value="" disabled selected>Select Faculty</option>
-        <option>Computer Engineering</option>
-        <option>Civil Engineering</option>
-        <option>Architecture Engineering</option>
-        <option>Electrical Engineering</option>
-    </select>
-  </div>
+        {% csrf_token %}
 
         <div class="mb-3">
-    <label for="leaveType" class="form-label">Leave Type</label>
-    <select name="leaveType" id="leaveType">
-        <option value="" disabled selected>Select Leave Type</option>
-        <option>Medical Leave</option>
-        <option>Personal Leave</option>
-        <option>Others</option>
-      </select>
-    </div>
+            <label for="student_id" class="form-label">Student ID</label>
+            <input type="text" name="student_id" class="form-control" id="student_id"
+                   maxlength="6" placeholder="Enter your 6-character student ID" required>
+        </div>
 
-    <div class="mb-3">
-      <label for="reason" class="form-label">Reason</label>
-      <input type="text" name="reason" class="form-control" id="reason"  placeholder="Enter your Reason">
-    </div>
-    
-       <div class="mb-3">
-    <label for="semester" class="form-label">Semester</label>
-    <input type="number" name="semester" class="form-control" id="semester"  placeholder="Enter your semester" min="1" max="10">
-  </div>
+        <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" name="first_name" class="form-control" id="first_name"
+                   maxlength="100" placeholder="Enter your first name" required>
+        </div>
 
-      <div class="mb-3">
-    <label for="StartDate" class="form-label">StartDate</label>
-    <input type="date" name="startDate" class="form-control" id="StartDate"  placeholder="Enter your Start Date">
-  </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" name="last_name" class="form-control" id="last_name"
+                   maxlength="100" placeholder="Enter your last name" required>
+        </div>
 
-     <div class="mb-3">
-      <label for="EndDate" class="form-label">EndDate</label>
-      <input type="date" name="endDate" class="form-control" id="EndDate"  placeholder="Enter your End Date">
-    </div>
+        <div class="mb-3">
+            <label for="department" class="form-label">Department</label>
+            <select name="department" id="department" class="form-select" required>
+                <option value="" disabled selected>Select Department</option>
+                {% for dept in department %}
+                    <option value="{{ dept.id }}">{{ dept.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
-    
-     <div class="mb-3">
-      <label for="guardianContact" class="form-label">Guardian Contact</label>
-      <input type="number" name="guardianContact" class="form-control" id="guardianContact"  placeholder="Enter your Guardian Contact Number">
-    </div>
+        <div class="mb-3">
+            <label for="semester" class="form-label">Semester</label>
+            <input type="number" name="semester" class="form-control" id="semester"
+                   placeholder="Enter your semester" min="1" required>
+        </div>
 
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-  </div>
-  
+        <div class="mb-3">
+            <label for="leave_type" class="form-label">Leave Type</label>
+            <select name="leave_type" id="leave_type" class="form-select" required>
+                <option value="" disabled selected>Select Leave Type</option>
+                {% for lt in leave_type %}
+                    <option value="{{ lt.id }}">{{ lt.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
-  <button type="submit"  class="btn btn-primary">Submit</button>
-</form>
- </div>
+        <div class="mb-3">
+            <label for="start_date" class="form-label">Start Date</label>
+            <input type="date" name="start_date" class="form-control" id="start_date" required>
+        </div>
 
- 
+        <div class="mb-3">
+            <label for="end_date" class="form-label">End Date</label>
+            <input type="date" name="end_date" class="form-control" id="end_date" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="reason" class="form-label">Reason</label>
+            <textarea name="reason" class="form-control" id="reason" rows="4"
+                      placeholder="Enter your reason for leave" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="guardian_contact" class="form-label">Guardian Contact</label>
+            <input type="text" name="guardian_contact" class="form-control" id="guardian_contact"
+                   maxlength="13" placeholder="Enter guardian contact number" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+
+</div>
+
 {% endblock content %}

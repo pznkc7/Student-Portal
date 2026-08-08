@@ -2,6 +2,126 @@
 {% load static %}
 {% block content %}
 
+<div class="container py-4">
 
- 
+    <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 26px; font-weight: 700; color: #1a1a2e; margin-bottom: 6px;">Contact Us</h2>
+        <p style="font-size: 15px; color: #6c757d; margin: 0;">Have questions or need help? We're here for you.</p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Contact Info -->
+        <div class="col-lg-4">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+
+                <div style="background: #fff; border: 0.5px solid #e0e0e0; border-radius: 12px; padding: 1.25rem; display: flex; align-items: flex-start; gap: 14px;">
+                    <div style="width: 42px; height: 42px; background: #e8f0fe; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fa-solid fa-location-dot" style="color: #0d6efd; font-size: 18px;"></i>
+                    </div>
+                    <div>
+                        <p style="font-size: 13px; font-weight: 600; color: #1a1a2e; margin: 0 0 4px;">Address</p>
+                        <p style="font-size: 13px; color: #6c757d; margin: 0; line-height: 1.6;">Everest Institute of Technology<br>Koteshwor, Kathmandu<br>Bagmati Province, Nepal</p>
+                    </div>
+                </div>
+
+                <div style="background: #fff; border: 0.5px solid #e0e0e0; border-radius: 12px; padding: 1.25rem; display: flex; align-items: flex-start; gap: 14px;">
+                    <div style="width: 42px; height: 42px; background: #e8f0fe; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fa-solid fa-phone" style="color: #0d6efd; font-size: 18px;"></i>
+                    </div>
+                    <div>
+                        <p style="font-size: 13px; font-weight: 600; color: #1a1a2e; margin: 0 0 4px;">Phone</p>
+                        <p style="font-size: 13px; color: #6c757d; margin: 0;">+977-01-4512345<br>+977-9800000000</p>
+                    </div>
+                </div>
+
+                <div style="background: #fff; border: 0.5px solid #e0e0e0; border-radius: 12px; padding: 1.25rem; display: flex; align-items: flex-start; gap: 14px;">
+                    <div style="width: 42px; height: 42px; background: #e8f0fe; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fa-solid fa-envelope" style="color: #0d6efd; font-size: 18px;"></i>
+                    </div>
+                    <div>
+                        <p style="font-size: 13px; font-weight: 600; color: #1a1a2e; margin: 0 0 4px;">Email</p>
+                        <p style="font-size: 13px; color: #6c757d; margin: 0;">info@everest-iot.edu.np<br>support@everest-iot.edu.np</p>
+                    </div>
+                </div>
+
+                <div style="background: #fff; border: 0.5px solid #e0e0e0; border-radius: 12px; padding: 1.25rem; display: flex; align-items: flex-start; gap: 14px;">
+                    <div style="width: 42px; height: 42px; background: #e8f0fe; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fa-solid fa-clock" style="color: #0d6efd; font-size: 18px;"></i>
+                    </div>
+                    <div>
+                        <p style="font-size: 13px; font-weight: 600; color: #1a1a2e; margin: 0 0 4px;">Office Hours</p>
+                        <p style="font-size: 13px; color: #6c757d; margin: 0;">Sunday – Friday<br>9:00 AM – 5:00 PM</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="col-lg-8">
+            <div style="background: #fff; border: 0.5px solid #e0e0e0; border-radius: 12px; padding: 2rem;">
+
+                <h5 style="font-weight: 600; color: #1a1a2e; margin-bottom: 1.5rem;">Send us a message</h5>
+
+                <form method="POST" action="#">
+                    {% csrf_token %}
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-sm-6">
+                            <label style="display: block; font-size: 13px; font-weight: 500; color: #6c757d; margin-bottom: 6px;">First Name</label>
+                            <input type="text" name="first_name" placeholder="John"
+                                style="width: 100%; padding: 11px 14px; border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;"
+                                onfocus="this.style.borderColor='#0d6efd'; this.style.boxShadow='0 0 0 3px rgba(13,110,253,0.12)';"
+                                onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none';">
+                        </div>
+                        <div class="col-sm-6">
+                            <label style="display: block; font-size: 13px; font-weight: 500; color: #6c757d; margin-bottom: 6px;">Last Name</label>
+                            <input type="text" name="last_name" placeholder="Doe"
+                                style="width: 100%; padding: 11px 14px; border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;"
+                                onfocus="this.style.borderColor='#0d6efd'; this.style.boxShadow='0 0 0 3px rgba(13,110,253,0.12)';"
+                                onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none';">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label style="display: block; font-size: 13px; font-weight: 500; color: #6c757d; margin-bottom: 6px;">Email Address</label>
+                        <input type="email" name="email" placeholder="john@example.com"
+                            style="width: 100%; padding: 11px 14px; border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;"
+                            onfocus="this.style.borderColor='#0d6efd'; this.style.boxShadow='0 0 0 3px rgba(13,110,253,0.12)';"
+                            onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none';">
+                    </div>
+
+                    <div class="mb-3">
+                        <label style="display: block; font-size: 13px; font-weight: 500; color: #6c757d; margin-bottom: 6px;">Subject</label>
+                        <input type="text" name="subject" placeholder="How can we help you?"
+                            style="width: 100%; padding: 11px 14px; border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;"
+                            onfocus="this.style.borderColor='#0d6efd'; this.style.boxShadow='0 0 0 3px rgba(13,110,253,0.12)';"
+                            onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none';">
+                    </div>
+
+                    <div class="mb-4">
+                        <label style="display: block; font-size: 13px; font-weight: 500; color: #6c757d; margin-bottom: 6px;">Message</label>
+                        <textarea name="message" rows="5" placeholder="Write your message here..."
+                            style="width: 100%; padding: 11px 14px; border: 0.5px solid #ced4da; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box; resize: vertical;"
+                            onfocus="this.style.borderColor='#0d6efd'; this.style.boxShadow='0 0 0 3px rgba(13,110,253,0.12)';"
+                            onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none';"></textarea>
+                    </div>
+
+                    <button type="submit"
+                        style="padding: 12px 28px; background: #0d6efd; color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s;"
+                        onmouseover="this.style.background='#0b5ed7';"
+                        onmouseout="this.style.background='#0d6efd';">
+                        <i class="fa-solid fa-paper-plane me-2"></i>Send Message
+                    </button>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
 {% endblock content %}
